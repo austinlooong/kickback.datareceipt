@@ -27,14 +27,12 @@ def generate_watch_summary(data, value_per_view=0.08):
 
     total_videos = len(watched_titles)
     estimated_value = round(total_videos * value_per_view, 2)
-    top_titles = Counter(watched_titles).most_common(5)
     most_active_hour = Counter(watch_hours).most_common(1)
     most_active_hour = f"{most_active_hour[0][0]}:00" if most_active_hour else "N/A"
 
     return {
         "total_videos": total_videos,
         "estimated_value": f"${estimated_value}",
-        "top_titles": [title for title, _ in top_titles],
         "most_active_hour": most_active_hour
     }
 
@@ -58,7 +56,6 @@ def display_receipt(watch_summary, search_summary):
     st.markdown(f"**Total Videos Watched:** {watch_summary['total_videos']}")
     st.markdown(f"**Estimated Value to Google:** {watch_summary['estimated_value']}")
     st.markdown(f"**Most Active Hour:** {watch_summary['most_active_hour']}")
-    st.markdown("**Top Watched Titles:**")
     for title in watch_summary['top_titles']:
         st.markdown(f"- {title}")
 
