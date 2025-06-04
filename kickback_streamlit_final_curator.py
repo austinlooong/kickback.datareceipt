@@ -6,8 +6,8 @@ from collections import Counter
 from datetime import datetime
 import tempfile
 
-st.set_page_config(page_title="Kickback (ZIP Upload)", page_icon="🧾")
-st.title("🧾 Kickback: Upload Your Google Takeout .zip")
+st.set_page_config(page_title="Kickback (ZIP Upload)", page_icon="")
+st.title("🧾 Kickback Data Receipts")
 st.write("Just drag in your Google Takeout `.zip` file and we’ll generate your data receipt.")
 
 # Processing functions
