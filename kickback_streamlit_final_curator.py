@@ -10,11 +10,10 @@ st.set_page_config(page_title="Kickback (ZIP Upload)", page_icon="🧾")
 st.markdown(
     """
     <style>
-    /* Import a Google Font (optional) */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 
-    html, body, [class*="css"]  {
-        font-family: 'Space Mono', sans-serif !important;
+    html, body, [class*="css"] {
+        font-family: 'Space Mono', monospace !important;
     }
     </style>
     """,
