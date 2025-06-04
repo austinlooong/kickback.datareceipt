@@ -8,7 +8,7 @@ import tempfile
 
 st.set_page_config(page_title="Kickback (ZIP Upload)", page_icon="")
 st.title("🧾 Kickback Data Receipts")
-st.write("Just drag in your Google Takeout `.zip` file and we’ll generate your data receipt.")
+st.subheader("Just drag in your Google Takeout `.zip` file and we’ll generate your data receipt.")
 
 # Processing functions
 def generate_watch_summary(data, value_per_view=0.08):
