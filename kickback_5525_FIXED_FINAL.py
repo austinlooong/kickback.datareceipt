@@ -140,11 +140,7 @@ Time to take your data back.
 
     st.code(receipt, language="text")
 
-    st.markdown("---")
-    st.subheader("💰 Summary")
-    st.markdown(f"**Total Estimated Value Generated for Google:** ${total_value}")
-    st.markdown("**You Received:** $0.00 😐")
-    st.caption("They watched you watch. Time to take your data back.")
+   
 
 # Upload and process ZIP
 zip_file = st.file_uploader("Upload your Google Takeout .zip", type="zip")
