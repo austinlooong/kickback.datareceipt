@@ -57,7 +57,7 @@ def generate_data_label(watch_summary, search_summary):
     watch_count = watch_summary['total_videos']
     search_count = search_summary['total_searches']
     unique_searches = search_summary['unique_terms']
-    most_active = watch_summary['most_active_hour']
+    most_active_hour = watch_summary['most_active_hour']
 
     if watch_count > 500 and search_count > 1000:
         return "🧾 Terminally Online Curator", (
@@ -108,6 +108,7 @@ def display_receipt(watch_summary, search_summary):
     st.subheader("📺 YouTube Watch History")
     st.markdown(f"**Total Videos Watched:** {watch_summary['total_videos']}")
     st.markdown(f"**Estimated Value to Google:** {watch_summary['estimated_value']}")
+    st.write("DEBUG watch_summary keys:", watch_summary.keys())
     st.markdown(f"**Most Active Hour:** {watch_summary['most_active_hour']}")
     st.subheader("🔍 YouTube Search History")
     st.markdown(f"**Total Searches:** {search_summary['total_searches']}")
