@@ -103,27 +103,42 @@ def generate_data_label(watch_summary, search_summary):
     )
 
 def display_receipt(watch_summary, search_summary):
-    st.markdown("---")
-    st.subheader("📺 YouTube Watch History")
-    st.markdown(f"**Total Videos Watched:** {watch_summary['total_videos']}")
-    st.markdown(f"**Estimated Value to Google:** {watch_summary['estimated_value']}")
-    st.markdown(f"**Most Active Hour:** {watch_summary['most_active_hour']}")
-    st.subheader("🔍 YouTube Search History")
-    st.markdown(f"**Total Searches:** {search_summary['total_searches']}")
-    st.markdown(f"**Estimated Value to Google:** {search_summary['estimated_value']}")
-    st.markdown(f"**Total Unique Searches:** {search_summary['unique_terms']}")
-
-    st.markdown("---")
-    st.subheader("🏷️ Data Label")
     label, description = generate_data_label(watch_summary, search_summary)
-    st.markdown(f"**{label}**")
-    st.markdown(description)
 
     total_value = round(
         float(watch_summary['estimated_value'].strip('$')) +
         float(search_summary['estimated_value'].strip('$')),
         2
     )
+
+    receipt = f"""
+┌──────────────────────────────────────────┐
+│         KICKBACK DATA RECEIPT            │
+├──────────────────────────────────────────┤
+│ 📺 YOUTUBE WATCH HISTORY                │
+│ Total Videos Watched:       {watch_summary['total_videos']:<6}       │
+│ Most Active Hour:           {watch_summary['most_active_hour']:<6}       │
+│ Estimated Value to Google:  {watch_summary['estimated_value']:<8}     │
+├──────────────────────────────────────────┤
+│ 🔍 YOUTUBE SEARCH HISTORY               │
+│ Total Searches:             {search_summary['total_searches']:<6}       │
+│ Unique Terms:               {search_summary['unique_terms']:<6}       │
+│ Estimated Value to Google:  {search_summary['estimated_value']:<8}     │
+├──────────────────────────────────────────┤
+│ 🏷️ DATA ARCHETYPE                       │
+│ {label:<38} │
+│ {description[:38]:<38} │
+├──────────────────────────────────────────┤
+│ 💰 SUMMARY                               │
+│ Total Value to Google:     ${total_value:<8}     │
+│ You Received:              $0.00 😐     │
+└──────────────────────────────────────────┘
+
+They watched you watch.
+Time to take your data back.
+"""
+
+    st.code(receipt, language="text")
 
     st.markdown("---")
     st.subheader("💰 Summary")
