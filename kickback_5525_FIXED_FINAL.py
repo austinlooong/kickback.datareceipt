@@ -114,21 +114,21 @@ def display_receipt(watch_summary, search_summary):
     receipt = f"""
 KICKBACK DATA RECEIPT
 ──────────────────────────────
-📺 YOUTUBE WATCH HISTORY
+YOUTUBE WATCH HISTORY
   Total Videos Watched:      {watch_summary['total_videos']}
   Most Active Hour:          {watch_summary['most_active_hour']}
   Estimated Value to Google: {watch_summary['estimated_value']}
 
-🔍 YOUTUBE SEARCH HISTORY
+YOUTUBE SEARCH HISTORY
   Total Searches:            {search_summary['total_searches']}
   Unique Terms:              {search_summary['unique_terms']}
   Estimated Value to Google: {search_summary['estimated_value']}
 
-🏷️ DATA ARCHETYPE
+DATA ARCHETYPE
   {label}
   {description}
 
-💰 SUMMARY
+SUMMARY
   Total Value to Google:     ${total_value}
   You Received:              $0.00 😐
 
