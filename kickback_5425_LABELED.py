@@ -52,7 +52,57 @@ def parse_youtube_search_history(data, value_per_search=0.03):
         "unique_terms": unique_terms,
         "estimated_value": f"${estimated_value}",
     }
+    
+def generate_data_label(watch_summary, search_summary):
+    watch_count = watch_summary['total_videos']
+    search_count = search_summary['total_searches']
+    unique_searches = search_summary['unique_terms']
+    most_active = watch_summary['most_active_hour']
 
+    if watch_count > 500 and search_count > 1000:
+        return "🧾 Terminally Online Curator", (
+            "You don’t consume — you catalog. Your playlists have subtext. "
+            "The algorithm tries to catch up, but you're already onto the next niche."
+        )
+    if unique_searches > 300:
+        return "🧠 Thought Spiral Enthusiast", (
+            "Your late-night queries include 'how do I know if I’m real' and 'can I marry my best friend.' "
+            "You don’t search — you spiral with intention."
+        )
+    if 3 <= int(most_active.split()[0]) <= 5:
+        return "👁️ Panopticon Peeper", (
+            "You are the dream user. Consistent. Predictable. Always watching. "
+            "Even your boredom has a timestamp."
+        )
+    if watch_count > 1000 and search_count < 50:
+        return "🌀 Algorithm-Generated Human", (
+            "You didn’t find YouTube. It found you. "
+            "The only thing you searched for was 'lofi beats to dissociate to.'"
+        )
+    if unique_searches > 200 and search_count > 500:
+        return "🛸 Fringe Researcher", (
+            "‘Simulation theory’ and ‘hidden ancient tech’ are normal to you. "
+            "Google doesn’t judge. It just listens."
+        )
+    if watch_count < 50 and search_count < 50:
+        return "🧃 Low-Impact Lurker", (
+            "You leave almost no trace. Maybe that’s on purpose. "
+            "Or maybe you just... have a life?"
+        )
+    if 100 <= watch_count <= 200 and 100 <= search_count <= 200:
+        return "👤 Default Human", (
+            "You don’t game the algorithm. You *are* the algorithm. "
+            "Predictable, pluggable, perfectly marketable."
+        )
+    if watch_count > 500 and unique_searches < 20:
+        return "🔥 Pipeline Candidate", (
+            "Your recommendations got darker. Your searches got louder. "
+            "You might’ve started with debates — but now you're in the trenches of the algorithm’s war games."
+        )
+    return "🧾 Terminally Online Curator", (
+        "You sift. You organize. You *know*. The algorithm follows you."
+)
+            
 def display_receipt(watch_summary, search_summary):
     st.markdown("---")
     st.subheader("📺 YouTube Watch History")
@@ -114,53 +164,3 @@ if zip_file:
             st.error("Could not find both `watch-history.json` and `search-history.json` in your .zip file. Make sure you downloaded your data from Google Takeout with YouTube history included.")
 
 
-
-def generate_data_label(watch_summary, search_summary):
-    watch_count = watch_summary['total_videos']
-    search_count = search_summary['total_searches']
-    unique_searches = search_summary['unique_terms']
-    most_active = watch_summary['most_active_hour']
-
-    if watch_count > 500 and search_count > 1000:
-        return "🧾 Terminally Online Curator", (
-            "You don’t consume — you catalog. Your playlists have subtext. "
-            "The algorithm tries to catch up, but you're already onto the next niche."
-        )
-    if unique_searches > 300:
-        return "🧠 Thought Spiral Enthusiast", (
-            "Your late-night queries include 'how do I know if I’m real' and 'can I marry my best friend.' "
-            "You don’t search — you spiral with intention."
-        )
-    if 3 <= int(most_active.split()[0]) <= 5:
-        return "👁️ Panopticon Peeper", (
-            "You are the dream user. Consistent. Predictable. Always watching. "
-            "Even your boredom has a timestamp."
-        )
-    if watch_count > 1000 and search_count < 50:
-        return "🌀 Algorithm-Generated Human", (
-            "You didn’t find YouTube. It found you. "
-            "The only thing you searched for was 'lofi beats to dissociate to.'"
-        )
-    if unique_searches > 200 and search_count > 500:
-        return "🛸 Fringe Researcher", (
-            "‘Simulation theory’ and ‘hidden ancient tech’ are normal to you. "
-            "Google doesn’t judge. It just listens."
-        )
-    if watch_count < 50 and search_count < 50:
-        return "🧃 Low-Impact Lurker", (
-            "You leave almost no trace. Maybe that’s on purpose. "
-            "Or maybe you just... have a life?"
-        )
-    if 100 <= watch_count <= 200 and 100 <= search_count <= 200:
-        return "👤 Default Human", (
-            "You don’t game the algorithm. You *are* the algorithm. "
-            "Predictable, pluggable, perfectly marketable."
-        )
-    if watch_count > 500 and unique_searches < 20:
-        return "🔥 Pipeline Candidate", (
-            "Your recommendations got darker. Your searches got louder. "
-            "You might’ve started with debates — but now you're in the trenches of the algorithm’s war games."
-        )
-    return "🧾 Terminally Online Curator", (
-        "You sift. You organize. You *know*. The algorithm follows you."
-    )
