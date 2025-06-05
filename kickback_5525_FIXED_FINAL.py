@@ -136,7 +136,22 @@ They watched you watch.
 Time to take your data back.
 """
 
-    st.markdown(f"<pre>{receipt}</pre>", unsafe_allow_html=True)
+    st.markdown(
+    f"""
+    <pre style="
+        background-color: #111;
+        color: #eee;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        padding: 1.2em;
+        border-radius: 6px;
+        white-space: pre-wrap;
+        line-height: 1.4;
+    ">{receipt}</pre>
+    """,
+    unsafe_allow_html=True
+)
+
 
    
 
