@@ -29,7 +29,7 @@ def generate_watch_summary(data, value_per_view=0.08):
     estimated_value = round(total_videos * value_per_view, 2)
     top_titles = Counter(watched_titles).most_common(5)
     most_active_hour = Counter(watch_hours).most_common(1)
-    most_active_hour = f"{most_active_hour[0][0]}:00" if most_active_hour else "N/A"
+    most_active_hour = time(hour).strftime("%-I %p") if most_active_hour else "N/A"
 
     return {
         "total_videos": total_videos,
