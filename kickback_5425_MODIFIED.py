@@ -113,3 +113,4 @@ if zip_file:
 
         else:
             st.error("Could not find both `watch-history.json` and `search-history.json` in your .zip file. Make sure you downloaded your data from Google Takeout with YouTube history included.")
+display_receipt(watch_summary, search_summary)
