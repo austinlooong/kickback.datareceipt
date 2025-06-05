@@ -45,13 +45,11 @@ def parse_youtube_search_history(data, value_per_search=0.03):
             searches.append(item['title'].replace("Searched for ", "").strip())
     total_searches = len(searches)
     estimated_value = round(total_searches * value_per_search, 2)
-    top_searches = Counter(searches).most_common(5)
     unique_terms = len(set(searches))
     return {
         "total_searches": total_searches,
         "unique_terms": unique_terms,
         "estimated_value": f"${estimated_value}",
-        "top_searches": [term for term, _ in top_searches]
     }
 
 def display_receipt(watch_summary, search_summary):
@@ -64,9 +62,6 @@ def display_receipt(watch_summary, search_summary):
     st.markdown(f"**Total Searches:** {search_summary['total_searches']}")
     st.markdown(f"**Estimated Value to Google:** {search_summary['estimated_value']}")
     st.markdown(f"**Total Unique Searches:** {search_summary['unique_terms']}")
-    st.markdown("**Top Search Terms:**")
-    for term in search_summary['top_searches']:
-        st.markdown(f"- {term}")
 
     st.markdown("---")
     st.subheader("🏷️ Data Label")
