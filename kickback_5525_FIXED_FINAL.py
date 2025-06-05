@@ -111,9 +111,18 @@ def display_receipt(watch_summary, search_summary):
         2
     )
 
+    def display_receipt(watch_summary, search_summary):
+    label, description = generate_data_label(watch_summary, search_summary)
+
+    total_value = round(
+        float(watch_summary['estimated_value'].strip('$')) +
+        float(search_summary['estimated_value'].strip('$')),
+        2
+    )
+
     receipt = f"""
 KICKBACK DATA RECEIPT
-──────────────────────────────
+────────────────────────────────────────────
 YOUTUBE WATCH HISTORY
   Total Videos Watched:      {watch_summary['total_videos']}
   Most Active Hour:          {watch_summary['most_active_hour']}
@@ -137,20 +146,20 @@ Time to take your data back.
 """
 
     st.markdown(
-    f"""
-    <pre style="
-        background-color: #111;
-        color: #eee;
-        font-family: 'Courier New', monospace;
-        font-size: 14px;
-        padding: 1.2em;
-        border-radius: 6px;
-        white-space: pre-wrap;
-        line-height: 1.4;
-    ">{receipt}</pre>
-    """,
-    unsafe_allow_html=True
-)
+        f"""
+        <pre style="
+            background-color: #111;
+            color: #eee;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            padding: 1.2em;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        ">{receipt}</pre>
+        """,
+        unsafe_allow_html=True
+    )
 
 
    
