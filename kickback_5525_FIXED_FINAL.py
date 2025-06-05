@@ -136,7 +136,7 @@ They watched you watch.
 Time to take your data back.
 """
 
-    st.code(receipt, language="text")
+    st.markdown(f"<pre>{receipt}</pre>", unsafe_allow_html=True)
 
    
 
