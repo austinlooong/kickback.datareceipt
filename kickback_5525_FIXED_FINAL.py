@@ -112,27 +112,25 @@ def display_receipt(watch_summary, search_summary):
     )
 
     receipt = f"""
-┌──────────────────────────────────────────┐
-│         KICKBACK DATA RECEIPT            │
-├──────────────────────────────────────────┤
-│ 📺 YOUTUBE WATCH HISTORY                │
-│ Total Videos Watched:       {watch_summary['total_videos']:<6}       │
-│ Most Active Hour:           {watch_summary['most_active_hour']:<6}       │
-│ Estimated Value to Google:  {watch_summary['estimated_value']:<8}     │
-├──────────────────────────────────────────┤
-│ 🔍 YOUTUBE SEARCH HISTORY               │
-│ Total Searches:             {search_summary['total_searches']:<6}       │
-│ Unique Terms:               {search_summary['unique_terms']:<6}       │
-│ Estimated Value to Google:  {search_summary['estimated_value']:<8}     │
-├──────────────────────────────────────────┤
-│ 🏷️ DATA ARCHETYPE                       │
-│ {label:<38} │
-│ {description[:38]:<38} │
-├──────────────────────────────────────────┤
-│ 💰 SUMMARY                               │
-│ Total Value to Google:     ${total_value:<8}     │
-│ You Received:              $0.00 😐     │
-└──────────────────────────────────────────┘
+KICKBACK DATA RECEIPT
+──────────────────────────────
+📺 YOUTUBE WATCH HISTORY
+  Total Videos Watched:      {watch_summary['total_videos']}
+  Most Active Hour:          {watch_summary['most_active_hour']}
+  Estimated Value to Google: {watch_summary['estimated_value']}
+
+🔍 YOUTUBE SEARCH HISTORY
+  Total Searches:            {search_summary['total_searches']}
+  Unique Terms:              {search_summary['unique_terms']}
+  Estimated Value to Google: {search_summary['estimated_value']}
+
+🏷️ DATA ARCHETYPE
+  {label}
+  {description}
+
+💰 SUMMARY
+  Total Value to Google:     ${total_value}
+  You Received:              $0.00 😐
 
 They watched you watch.
 Time to take your data back.
