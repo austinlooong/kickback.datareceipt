@@ -149,15 +149,34 @@ if zip_file:
                 elif f == "search-history.json":
                     search_path = os.path.join(root, f)
 
-        if watch_path and search_path:
-            with open(watch_path, 'r', encoding='utf-8') as f:
-                watch_data = json.load(f)
-            with open(search_path, 'r', encoding='utf-8') as f:
-                search_data = json.load(f)
+        watch_summary = {}
+search_summary = {}
 
-            watch_summary = generate_watch_summary(watch_data)
-            search_summary = parse_youtube_search_history(search_data)
-            display_receipt(watch_summary, search_summary)
+if watch_path:
+    with open(watch_path, 'r', encoding='utf-8') as f:
+        watch_data = json.load(f)
+    watch_summary = generate_watch_summary(watch_data)
 
-        else:
-            st.error("Could not find both `watch-history.json` and `search-history.json` in your .zip file. Make sure you downloaded your data from Google Takeout with YouTube history included.")
+if search_path:
+    with open(search_path, 'r', encoding='utf-8') as f:
+        search_data = json.load(f)
+    search_summary = parse_youtube_search_history(search_data)
+
+if watch_summary or search_summary:
+    # Fill in missing summary with zero/defaults if needed
+    if not watch_summary:
+        watch_summary = {
+            "total_videos": 0,
+            "estimated_value": "$0.00",
+            "top_titles": [],
+            "most_active_hour": "N/A"
+        }
+    if not search_summary:
+        search_summary = {
+            "total_searches": 0,
+            "unique_terms": 0,
+            "estimated_value": "$0.00"
+        }
+    display_receipt(watch_summary, search_summary)
+else:
+    st.error("No valid data found. Please include at least your watch or search history from Google Takeout.")
