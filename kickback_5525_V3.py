@@ -138,6 +138,9 @@ if zip_file:
     with tempfile.TemporaryDirectory() as tmpdir:
         with zipfile.ZipFile(zip_file, "r") as z:
             z.extractall(tmpdir)
+            watch_path = None
+            search_path = None
+
 
         watch_path = None
         search_path = None
