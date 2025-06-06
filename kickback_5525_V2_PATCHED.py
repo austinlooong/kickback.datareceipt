@@ -102,15 +102,21 @@ def generate_data_label(watch_summary, search_summary):
         "You sift. You organize. You *know*. The algorithm follows you."
     )
 
-def display_receipt(watch_summary, search_summary):
-    label, description = generate_data_label(watch_summary, search_summary)
-
+def display_receipt(watch_summary=None, search_summary=None):
     total_value = 0
-    if watch_summary:
-        total_value += float(watch_summary['estimated_value'].strip('$'))
-    if search_summary:
-        total_value += float(search_summary['estimated_value'].strip('$'))
-    total_value = round(total_value, 2)
+    label, description = None, None
+
+    if watch_summary and search_summary:
+        label, description = generate_data_label(watch_summary, search_summary)
+        total_value = round(
+            float(watch_summary['estimated_value'].strip('$')) +
+            float(search_summary['estimated_value'].strip('$')),
+            2
+        )
+    elif watch_summary:
+        total_value = float(watch_summary['estimated_value'].strip('$'))
+    elif search_summary:
+        total_value = float(search_summary['estimated_value'].strip('$'))
 
     receipt_lines = ["KICKBACK DATA RECEIPT", "──────────────────────────────"]
 
@@ -132,7 +138,7 @@ def display_receipt(watch_summary, search_summary):
             ""
         ]
 
-    if watch_summary and search_summary:
+    if label and description:
         receipt_lines += [
             "🏷️ DATA ARCHETYPE",
             f"  {label}",
